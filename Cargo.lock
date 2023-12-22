@@ -152,6 +152,7 @@ name = "filtering"
 version = "0.1.0"
 dependencies = [
  "image",
+ "mdarray",
  "raylib",
 ]
 
@@ -254,6 +255,12 @@ dependencies = [
  "autocfg",
  "scopeguard",
 ]
+
+[[package]]
+name = "mdarray"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "421992d0ecace9ef99ced7d113c317418ae56ee14d1be44ae287ae14843e6e52"
 
 [[package]]
 name = "memoffset"
