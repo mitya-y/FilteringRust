@@ -1,37 +1,6 @@
 use std::path::Path;
 use image::{io::Reader as ImageReader, Rgb, ImageBuffer, ImageFormat};
-
-struct FilteringImage<'a> {
-  width : i32,
-  height: i32,
-  bytes: &'a [u8]
-}
-
-impl<'a> FilteringImage<'a> {
-  fn new(bytes: &'a [u8], width: u32, height: u32) -> Self {
-    Self {
-      width: width as i32,
-      height: height as i32,
-      bytes: bytes
-    }
-  }
-}
-
-struct FilteringImageMut<'a> {
-  width : i32,
-  _height: i32,
-  bytes: &'a mut [u8]
-}
-
-impl<'a> FilteringImageMut<'a> {
-  fn new(bytes: &'a mut [u8], width: u32, height: u32) -> Self {
-    Self {
-      width: width as i32,
-      _height: height as i32,
-      bytes: bytes
-    }
-  }
-}
+use super::{FilteringImage, FilteringImageMut};
 
 fn get_pixel(img: &FilteringImage, mut x: i32, mut y: i32) -> [u8; 3] {
   x = (x + img.width) % img.width;
