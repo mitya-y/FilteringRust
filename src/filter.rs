@@ -46,9 +46,9 @@ fn apply_filter<FilterType : super::FilterMatrix>(source: &FilteringImage, dest:
 
 pub fn filter<FilterType : super::FilterMatrix>(source: &Path, dest: &Path, filters: Vec<FilterType>) {
   let src_img = ImageReader::open(source).unwrap().decode().unwrap();
-  let mut bytes_vector = vec![0u8; src_img.width() as usize * src_img.height() as usize * 3];
   
-  let source_image = FilteringImage::copy_from(src_img.as_bytes(), src_img.width(), src_img.height());
+  let mut source_image = FilteringImage::new(src_img.width(), src_img.height());
+  source_image.copy_from(src_img.as_bytes());
   let mut dest_image = FilteringImage::new(src_img.width(), src_img.height());
 
   apply_filter(&source_image, &mut dest_image, &filters[0]);
