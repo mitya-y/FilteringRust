@@ -16,5 +16,23 @@ impl FilteringImage {
       bytes: vec![0; (width * height * 3) as usize],
     }
   }
+
+pub fn get_pixel(&self, mut x: i32, mut y: i32) -> [u8; 3] {
+  x = (x + self.width) % self.width;
+  y = (y + self.height) % self.height;
+  let first_index = ((y * self.width + x) * 3) as usize;
+  [
+    self.bytes[first_index + 0],
+    self.bytes[first_index + 1],
+    self.bytes[first_index + 2],
+  ]
+}
+
+pub fn set_pixel(&mut self, x: i32, y: i32, color: [u8; 3]) {
+  let first_index = ((y * self.width + x) * 3) as usize;
+  self.bytes[first_index + 0] = color[0];
+  self.bytes[first_index + 1] = color[1];
+  self.bytes[first_index + 2] = color[2];
+}
 }
   
